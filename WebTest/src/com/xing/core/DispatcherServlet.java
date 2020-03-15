@@ -1,15 +1,15 @@
 package com.xing.core;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jdk.internal.org.objectweb.asm.tree.analysis.Value;
+
+import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -32,17 +32,18 @@ public class DispatcherServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("getScheme:"+req.getScheme());//获取请求协议
         System.out.println("getServerName:"+req.getServerName());//获取服务器名称
-        System.out.println("getServerPort:"+req.getServerPort());//获取服务器端口号
-        System.out.println("getContextPath:"+req.getContextPath());//获取项目的名称
-        System.out.println("getQueryString:"+req.getQueryString());//获取参数部分
-        System.out.println("getRequestURI:"+req.getRequestURI());//获取请求URI
-        System.out.println("getRequestURL:"+req.getRequestURL());//获取请求URL
-        System.out.println("getServletPath:"+req.getServletPath());//获取Servlet路径
-        System.out.println("getPathInfo:"+req.getPathInfo());//获取请求servlet路径
+        System.out.println("getServerPort:" + req.getServerPort());//获取服务器端口号
+        System.out.println("getContextPath:" + req.getContextPath());//获取项目的名称
+        System.out.println("getQueryString:" + req.getQueryString());//获取参数部分
+        System.out.println("getRequestURI:" + req.getRequestURI());//获取请求URI
+        System.out.println("getRequestURL:" + req.getRequestURL());//获取请求URL
+        System.out.println("getServletPath:" + req.getServletPath());//获取Servlet路径
+        System.out.println("getPathInfo:" + req.getPathInfo());//获取请求servlet路径
 
         System.out.println("-----------------------------------------");
 
-        handlerAdapter.adaptive(req,resp);
+        req.getParameterMap().forEach((key, Value) -> System.out.println(key + "--" + Arrays.toString(Value)));
+//        handlerAdapter.adaptive(req,resp);
     }
 
     @Override
