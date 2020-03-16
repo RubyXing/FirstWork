@@ -42,8 +42,17 @@ public class DispatcherServlet extends HttpServlet {
 
         System.out.println("-----------------------------------------");
 
-        req.getParameterMap().forEach((key, Value) -> System.out.println(key + "--" + Arrays.toString(Value)));
-        handlerAdapter.adaptive(req, resp);
+        Object adaptive = handlerAdapter.adaptive(req, resp);
+        System.out.println("返回值：" + adaptive);
+        if (adaptive != null) {
+            if (adaptive.toString().startsWith("request:")) {
+                req.getRequestDispatcher(adaptive.toString().replace("request:", "")).forward(req, resp);
+            } else {
+                resp.sendRedirect(req.getContextPath() + adaptive.toString());
+            }
+
+        }
+
     }
 
     @Override

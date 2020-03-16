@@ -24,11 +24,11 @@ public class SimpleBean {
         this.anInt = anInt;
     }
 
-    public double getaDouble() {
+    public double getADouble() {
         return aDouble;
     }
 
-    public void setaDouble(double aDouble) {
+    public void setADouble(double aDouble) {
         this.aDouble = aDouble;
     }
 

@@ -3,7 +3,6 @@ package com.xing.controller;
 import com.xing.annonation.MyController;
 import com.xing.annonation.RequestMapping;
 import com.xing.pojo.SimpleBean;
-
 import java.util.Arrays;
 
 @MyController
@@ -22,7 +21,9 @@ public class TestC {
     }
 
     @RequestMapping(value = "/getBean.do")
-    public void getBean(SimpleBean bean) {
+    public String getBean(SimpleBean bean) {
+        System.out.println("getBean输出：");
         System.out.println(bean);
+        return "request:/myshow.jsp";
     }
 }

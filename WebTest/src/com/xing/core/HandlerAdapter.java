@@ -4,6 +4,7 @@ package com.xing.core;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
@@ -50,18 +51,20 @@ public class HandlerAdapter {
             return null;
         }
 
-        //判断方法是否需要传参request，response。
+        //传参判断方法
         for (int i = 0; i < parameters.length; i++) {
             //获取参数类型
             Class<?> parmetType = parameters[i].getType();
-            //判断填入参数
+            //判断填入参数是否需要传参request，response。
             if (parmetType.isAssignableFrom(HttpServletRequest.class)) {
                 realParameter[i] = req;
             } else if (parmetType.isAssignableFrom(HttpServletResponse.class)) {
                 realParameter[i] = resp;
             }
-            //判断是否为基本数据类型和数组
-            else if (parmetType.isPrimitive()) {
+            //判断是否为基本数据类型,数组,字符串
+            else if (parmetType.isPrimitive()
+                    || parmetType.isArray()
+                    || parmetType.isAssignableFrom(String.class)) {
                 //获取参数名称
                 String parameterName = parameters[i].getName();
                 //通过参数名获取请求参数
@@ -71,7 +74,42 @@ public class HandlerAdapter {
             }
             //判断自定义类型
             else if (parmetType.getClassLoader() != null) {
+                String beanName = parameters[i].getName();
+                Object beanInstance = null;
+                try {
+                    beanInstance = parmetType.newInstance();
+                } catch (Exception e) {
+                    System.out.println("bean实例化异常");
+                    e.printStackTrace();
+                }
+                //
+                Field[] DeclaredFields = parmetType.getDeclaredFields();
+                for (Field declaredField : DeclaredFields) {
 
+                    String fieldName = declaredField.getName();
+                    String keyName = beanName + "." + fieldName;
+                    //值字符串
+                    String[] strings = parameterMap.get(keyName);
+                    if (strings == null) {
+                        continue;
+                    }
+                    //参数类型转换
+                    Object trueParameter = conversionType(strings, declaredField.getType());
+                    try {
+                        //找到对应的set方法
+                        char[] cs = fieldName.toCharArray();
+                        cs[0] -= 32;
+                        String setMethodName = "set" + String.valueOf(cs);
+                        //获取方法用的方法的参数类型
+                        // 因为类型转换写的不完善，所以要通过方法的参数来找方法，部分参数可以自动类型转换
+                        Method declaredMethod = parmetType.getDeclaredMethod(setMethodName, declaredField.getType());
+                        declaredMethod.invoke(beanInstance, trueParameter);
+                    } catch (Exception e) {
+                        System.out.println("获取bean方法异常");
+                        e.printStackTrace();
+                    }
+                }
+                realParameter[i] = beanInstance;
             }
 
         }
@@ -88,27 +126,28 @@ public class HandlerAdapter {
         return obj;
     }
 
-    //数据类型转换
+    //数据类型转换,只处理了int，boolean，double，string和这些数组
     private Object conversionType(String[] parameterString, Class<?> parmetType) {
         Object result = null;
-        //属性类型名称
-        String simpleName = parmetType.getSimpleName();
+        if (parameterString.length > 1) {
+            parmetType = parmetType.getComponentType();
+        }
 
-        if (simpleName.equals("int") || simpleName.equals("Integer")) {
+        if (parmetType.isAssignableFrom(int.class) || parmetType.isAssignableFrom(Integer.class)) {
             if (parameterString.length > 1) {
-                result = Arrays.asList(parameterString).stream().mapToInt(Integer::parseInt).toArray();
+                result = Arrays.stream(parameterString).mapToInt(Integer::parseInt).toArray();
             } else {
                 result = Integer.parseInt(parameterString[0]);
             }
-        } else if (simpleName.equals("boolean") || simpleName.equals("Boolean")) {
-            result = Integer.parseInt(parameterString[0]);
-        } else if (simpleName.equals("double") || simpleName.equals("Double")) {
+        } else if (parmetType.isAssignableFrom(boolean.class) || parmetType.isAssignableFrom(Boolean.class)) {
+            result = Boolean.parseBoolean(parameterString[0]);
+        } else if (parmetType.isAssignableFrom(double.class) || parmetType.isAssignableFrom(Double.class)) {
             if (parameterString.length > 1) {
-                result = Arrays.asList(parameterString).stream().mapToDouble(Double::parseDouble).toArray();
+                result = Arrays.stream(parameterString).mapToDouble(Double::parseDouble).toArray();
             } else {
                 result = Double.parseDouble(parameterString[0]);
             }
-        } else if (simpleName.equals("String")) {
+        } else if (parmetType.isAssignableFrom(String.class)) {
             if (parameterString.length > 1) {
                 result = parameterString;
             } else {
