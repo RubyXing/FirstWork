@@ -4,21 +4,24 @@ import com.xing.annonation.MyController;
 import com.xing.annonation.RequestMapping;
 import com.xing.pojo.SimpleBean;
 
+import java.util.Arrays;
+
 @MyController
 @RequestMapping(value = "/test")
 public class TestC {
 
-    @RequestMapping(value = "/param")
-    public String passTest(byte b, short s, int i, long l, char c, boolean bool, float f, double d) {
-        System.out.println("byte:" + b);
-        System.out.println("short:" + s);
-        System.out.println("long:" + l);
-        System.out.println("int:" + i);
+    @RequestMapping(value = "/param.do")
+    public String passTest(int i, int[] it, String str, String[] strs, double dou) {
+        System.out.println(i);
+        System.out.println(Arrays.toString(it));
+        System.out.println(str);
+        System.out.println(Arrays.toString(strs));
+        System.out.println(dou);
 
-        return "" + c + bool + f + d;
+        return "success";
     }
 
-    @RequestMapping(value = "/getBean")
+    @RequestMapping(value = "/getBean.do")
     public void getBean(SimpleBean bean) {
         System.out.println(bean);
     }

@@ -30,6 +30,9 @@ public class HandlerAdapter {
         //获取方法
         Method method = methodMapping.get(servletPath);
         //获得方法形参数
+        //使用getName时参数名会被替换，
+        //1.File->Settings->Build,Execution,Deployment->Compiler->Java Compiler
+        //2在 Additional command line parameters: 后面填上 -parameters
         Parameter[] parameters = method.getParameters();
         //声明方法实参
         Object[] realParameter = new Object[parameters.length];
@@ -65,7 +68,6 @@ public class HandlerAdapter {
                 String[] parameterString = parameterMap.get(parameterName);
                 //将string转为对应数据类型放入实参
                 realParameter[i] = conversionType(parameterString, parmetType);
-
             }
             //判断自定义类型
             else if (parmetType.getClassLoader() != null) {

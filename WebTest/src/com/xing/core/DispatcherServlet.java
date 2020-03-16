@@ -43,7 +43,7 @@ public class DispatcherServlet extends HttpServlet {
         System.out.println("-----------------------------------------");
 
         req.getParameterMap().forEach((key, Value) -> System.out.println(key + "--" + Arrays.toString(Value)));
-//        handlerAdapter.adaptive(req,resp);
+        handlerAdapter.adaptive(req, resp);
     }
 
     @Override
