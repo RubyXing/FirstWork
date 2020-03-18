@@ -1,5 +1,6 @@
 package com.xing.core;
 
+import com.alibaba.fastjson.JSON;
 import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 
 import javax.servlet.*;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,15 +44,22 @@ public class DispatcherServlet extends HttpServlet {
 
         System.out.println("-----------------------------------------");
 
+        resp.setCharacterEncoding("utf-8");
+        PrintWriter out = resp.getWriter();
+
         Object adaptive = handlerAdapter.adaptive(req, resp);
         System.out.println("返回值：" + adaptive);
-        if (adaptive != null) {
+        //如果返回string则判断为请求转发，
+        if (adaptive instanceof String) {
             if (adaptive.toString().startsWith("request:")) {
+                //请求转发
                 req.getRequestDispatcher(adaptive.toString().replace("request:", "")).forward(req, resp);
             } else {
+                //重定向
                 resp.sendRedirect(req.getContextPath() + adaptive.toString());
             }
-
+        } else {
+            out.print(JSON.toJSON(adaptive));
         }
 
     }
