@@ -1,16 +1,11 @@
 package com.xing.jdbcUtil;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class JdbcConnect {
-    // 数据库地址
-    private String dbUrl = "jdbc:mysql://127.0.0.1:3306/wndata?useSSL=false&serverTimezone=CTT";
-    // 用户名
-    private String dbUserName = "root";
-    // 密码
-    private String dbPassword = "root";
-    // 驱动名称
-    private String jdbcName = "com.mysql.cj.jdbc.Driver";
 
     Connection conn;
     PreparedStatement ps;//代表一条预编译的SQL
@@ -18,6 +13,23 @@ public class JdbcConnect {
 
     //获得数据库连接
     public Connection getCon() {
+        Properties properties = new Properties();
+        try {
+            properties.load(this.getClass().getClassLoader().getResourceAsStream("database.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("加载数据库属性异常");
+        }
+        // 数据库地址
+        String dbUrl = properties.getProperty("dbUrl");
+        // 用户名
+        String dbUserName = properties.getProperty("dbUserName");
+        // 密码
+        String dbPassword = properties.getProperty("dbPassword");
+        // 驱动名称
+        String jdbcName = properties.getProperty("jdbcName");
+
+
         try {
             Class.forName(jdbcName);
             System.out.println("加载驱动成功！");
