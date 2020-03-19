@@ -55,6 +55,8 @@ public class DispatcherServlet extends HttpServlet {
             if (resultViewUrl.startsWith("request:")) {
                 //请求转发
                 resultView.getHashMap().forEach(req::setAttribute);
+                //输出查看设置的值
+                System.out.println("request设置的值：");
                 resultView.getHashMap().forEach((key, Value) -> {
                     System.out.println(key);
                     System.out.println(Value);
@@ -67,7 +69,6 @@ public class DispatcherServlet extends HttpServlet {
         } else {
             out.print(JSON.toJSON(adaptive));
         }
-
     }
 
     @Override

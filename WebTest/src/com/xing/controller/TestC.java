@@ -4,7 +4,10 @@ import com.xing.annonation.MyController;
 import com.xing.annonation.RequestMapping;
 import com.xing.core.Viewer;
 import com.xing.pojo.SimpleBean;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @MyController
 @RequestMapping(value = "/test")
@@ -28,6 +31,12 @@ public class TestC {
 
         Viewer viewer = new Viewer("request:/myshow.jsp");
         viewer.getHashMap().put("myBean", bean);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("aaaaa");
+        list.add("bbbbb");
+        list.add("ccccc");
+        list.add("ddddd");
+        viewer.getHashMap().put("myList", list);
         return viewer;
     }
 }
