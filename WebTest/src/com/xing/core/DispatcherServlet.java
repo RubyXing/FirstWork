@@ -48,15 +48,21 @@ public class DispatcherServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         Object adaptive = handlerAdapter.adaptive(req, resp);
-        System.out.println("返回值：" + adaptive);
-        //如果返回string则判断为请求转发，
-        if (adaptive instanceof String) {
-            if (adaptive.toString().startsWith("request:")) {
+        //若果是viewer类的返回值
+        if (adaptive instanceof Viewer) {
+            Viewer resultView = (Viewer) adaptive;
+            String resultViewUrl = resultView.getUrl();
+            if (resultViewUrl.startsWith("request:")) {
                 //请求转发
-                req.getRequestDispatcher(adaptive.toString().replace("request:", "")).forward(req, resp);
+                resultView.getHashMap().forEach(req::setAttribute);
+                resultView.getHashMap().forEach((key, Value) -> {
+                    System.out.println(key);
+                    System.out.println(Value);
+                });
+                req.getRequestDispatcher(resultViewUrl.replace("request:", "")).forward(req, resp);
             } else {
                 //重定向
-                resp.sendRedirect(req.getContextPath() + adaptive.toString());
+                resp.sendRedirect(req.getContextPath() + resultViewUrl);
             }
         } else {
             out.print(JSON.toJSON(adaptive));

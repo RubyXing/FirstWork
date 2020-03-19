@@ -2,6 +2,7 @@ package com.xing.controller;
 
 import com.xing.annonation.MyController;
 import com.xing.annonation.RequestMapping;
+import com.xing.core.Viewer;
 import com.xing.pojo.SimpleBean;
 import java.util.Arrays;
 
@@ -21,9 +22,12 @@ public class TestC {
     }
 
     @RequestMapping(value = "/getBean.do")
-    public String getBean(SimpleBean bean) {
+    public Viewer getBean(SimpleBean bean) {
         System.out.println("getBean输出：");
         System.out.println(bean);
-        return "request:/myshow.jsp";
+
+        Viewer viewer = new Viewer("request:/myshow.jsp");
+        viewer.getHashMap().put("myBean", bean);
+        return viewer;
     }
 }
