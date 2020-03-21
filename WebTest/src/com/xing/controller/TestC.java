@@ -3,6 +3,7 @@ package com.xing.controller;
 import com.xing.annonation.MyController;
 import com.xing.annonation.RequestMapping;
 import com.xing.core.Viewer;
+import com.xing.pojo.Ctag;
 import com.xing.pojo.SimpleBean;
 
 import java.util.ArrayList;
@@ -29,13 +30,15 @@ public class TestC {
         System.out.println("getBean输出：");
         System.out.println(bean);
 
-        Viewer viewer = new Viewer("request:/myshow.jsp");
+        Viewer viewer = new Viewer("/myshow.jsp");
         viewer.getHashMap().put("myBean", bean);
-        ArrayList<String> list = new ArrayList<>();
-        list.add("aaaaa");
-        list.add("bbbbb");
-        list.add("ccccc");
-        list.add("ddddd");
+        Ctag ctag = new Ctag();
+        ctag.setTname("abcde");
+        ArrayList<Ctag> list = new ArrayList<>();
+        list.add(ctag);
+        list.add(ctag);
+        list.add(ctag);
+        list.add(ctag);
         viewer.getHashMap().put("myList", list);
         return viewer;
     }

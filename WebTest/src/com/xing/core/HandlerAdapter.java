@@ -121,7 +121,7 @@ public class HandlerAdapter {
             obj = method.invoke(controller, realParameter);
         } catch (Exception e) {
             System.out.println("HandlerAdapter，方法执行错误");
-            System.out.println(e);
+            e.printStackTrace();
         }
         return obj;
     }

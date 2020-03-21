@@ -52,7 +52,10 @@ public class DispatcherServlet extends HttpServlet {
         if (adaptive instanceof Viewer) {
             Viewer resultView = (Viewer) adaptive;
             String resultViewUrl = resultView.getUrl();
-            if (resultViewUrl.startsWith("request:")) {
+            if (resultViewUrl.startsWith("response:")) {
+                //重定向
+                resp.sendRedirect(req.getContextPath() + resultViewUrl.replace("request:", ""));
+            } else {
                 //请求转发
                 resultView.getHashMap().forEach(req::setAttribute);
                 //输出查看设置的值
@@ -61,10 +64,7 @@ public class DispatcherServlet extends HttpServlet {
                     System.out.println(key);
                     System.out.println(Value);
                 });
-                req.getRequestDispatcher(resultViewUrl.replace("request:", "")).forward(req, resp);
-            } else {
-                //重定向
-                resp.sendRedirect(req.getContextPath() + resultViewUrl);
+                req.getRequestDispatcher(resultViewUrl).forward(req, resp);
             }
         } else {
             out.print(JSON.toJSON(adaptive));

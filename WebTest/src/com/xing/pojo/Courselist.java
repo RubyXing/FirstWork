@@ -114,4 +114,15 @@ public class Courselist {
         this.crebate = crebate;
     }
 
+    @Override
+    public String toString() {
+        return "Courselist{" +
+                "cid=" + cid +
+                ", cname='" + cname + '\'' +
+                ", cdirection=" + cdirection +
+                ", ctype=" + ctype +
+                ", clabe=" + clabe +
+                ", ccondition=" + ccondition +
+                '}';
+    }
 }

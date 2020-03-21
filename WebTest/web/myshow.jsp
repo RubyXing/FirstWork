@@ -7,6 +7,7 @@
 <body>
 
 ${myBean}
+
 <c:forEach items="${myList}" var="clist">
     ${clist}
 </c:forEach>

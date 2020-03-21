@@ -34,4 +34,12 @@ public class Ctag {
         this.topid = topid;
     }
 
+    @Override
+    public String toString() {
+        return "Ctag{" +
+                "tid=" + tid +
+                ", tname='" + tname + '\'' +
+                ", topid=" + topid +
+                '}';
+    }
 }
