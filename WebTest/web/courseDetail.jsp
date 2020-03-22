@@ -9,13 +9,13 @@
         <div class="index-wrapper">
             <div class="bread-nav bread-nav-banner">
                 <div class="current-position">
-                    <a href="//www.w3cschool.cn/courses">编程课程列表</a>&nbsp;&gt;&nbsp;<span>HTML微课(含HTML5)</span>
+                    <a href="courseList/list.do">编程课程列表</a>&nbsp;&gt;&nbsp;<span>${course.cname}</span>
                 </div>
             </div>
             <div class="courselist-banner-content">
                 <div class="courselist-banner-l">
-                    <img src="//7n.w3cschool.cn/attachments/image/201910/big_56875_1378947.jpg?t=1571206351"
-                         alt="HTML微课(含HTML5)">
+                    <img src="${course.cimgaddress}"
+                         alt="${course.cname}">
                     <ul class="courselist-tips-box">
                         <li><i class="tips-ico credit-card-ico"></i><span class="tips-tag">信用卡&nbsp;•&nbsp;花呗</span>
                         </li>
@@ -23,19 +23,28 @@
                     </ul>
                 </div>
                 <div class="courselist-banner-r">
-                    <h2 class="courselist-course-name">HTML微课(含HTML5)</h2>
+                    <h2 class="courselist-course-name">${course.cname}</h2>
                     <div class="courselist-banner-meta">
                         <div class="get-banner-meta">
                             <span><i class="icon w3c-icon w3c-icon-content"></i>图文课程</span>
                             <i class="c-line"></i>
                             <!-- 微课含有的视频总时长 -->
-                            <span>60 节</span>
+                            <span>${courseDetail.dlessons} 节</span>
                             <i class="c-line"></i>
-                            <span>283 个小点</span>
+                            <span>${courseDetail.dsmaller} 个小点</span>
                             <i class="c-line"></i>
-                            <span>96.5k人参与</span>
+                            <span>
+                                <c:choose>
+                                    <c:when test="${course.cparticipate<1}">
+                                        <fmt:formatNumber type="number" value="${course.cparticipate*1000}" pattern="0.00"
+                                                          maxFractionDigits="0"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${course.cparticipate}K
+                                    </c:otherwise>
+                                </c:choose>人参与</span>
                             <i class="c-line"></i>
-                            <span>综合评分 4.9</span>
+                            <span>综合评分 ${courseDetail.dscore}</span>
                         </div>
                     </div>
                     <div class="get-cert-box">
@@ -43,20 +52,45 @@
                     </div>
                     <div class="courselist-banner-info">
                         <div class="get-courseprice-box">
-                            <span class="cur-price ">¥39</span>
+                            <c:choose>
+                                <c:when test="${course.crebate<1}">
+                                    <span class="cur-price ">
+                                        ¥<fmt:formatNumber type="number"
+                                                           value="${course.cprice*course.crebate}"
+                                                           pattern="0.00"
+                                                           maxFractionDigits="2"/>
+                                    </span>
+                                    <del class="pre-price">¥${course.cprice}</del>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="cur-price ">¥${course.cprice}</span>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
-                        <div class="get-vipprice-box">
-                            <span class="vipprice-tips">开通VIP会员，本门课程<em>免费学</em></span>
-                            <a href="/vip?refer=/minicourse/play/htmlcourse&amp;fcode=minicourse_htmlcourse"
-                               target="_blank" class="vipprice-btn">立即开通&nbsp;&gt;</a>
-                        </div>
-                        <!-- 限时折扣 -->
+                        <c:choose>
+                            <c:when test="${course.ccondition==402}">
+                                <div class="get-vipprice-box">
+                                <span class="vipprice-tips">开通VIP会员，本门课程<em>免费学</em></span>
+                                <a href=""
+                                   target="_blank" class="vipprice-btn">立即开通&nbsp;&gt;</a>
+                                </div>
+                            </c:when>
+                            <c:when test="${course.ccondition==403}">
+                                <div class="get-vipprice-box">
+                                    <span class="vipprice-tips">开通VIP会员，购买仅需&nbsp;<em>
+                                        <b>¥<fmt:formatNumber type="number" value="${course.cprice*course.crebate}"
+                                                              pattern="0.00"
+                                                              maxFractionDigits="2"/>
+                                        </b></em></span>
+                                    <a href="" target="_blank" class="vipprice-btn">立即开通&nbsp;&gt;</a>
+                                </div>
+                            </c:when>
+                        </c:choose>
+
                     </div>
                     <div class="courselist-banner-footer">
                         <a href="javascript:;" class="go-btn login-btn tologin">登录学习</a>
-                        <a href="/minicourse/play/htmlcourse?cp=15&amp;gid=0" class="go-btn try-btn">免费试学</a>
-
-                        &nbsp;&nbsp;
+                        <a href="" class="go-btn try-btn">免费试学</a>
                     </div>
                 </div>
             </div>
@@ -67,6 +101,7 @@
 
 <div class="courselist-content">
     <div class="index-wrapper">
+        <!--主要介绍-->
         <div class="courselist-list">
             <div class="courselist-nav">
                 <ul class="courselist-nav-tabs">
@@ -85,79 +120,24 @@
                 <!-- 课程介绍 -->
                 <div id="morecontent" class="courselist-item courselist-d active">
                     <div class="courseinfo-intro content-intro"><p>
-                        <img src="https://7n.w3cschool.cn/attachments/image/20190626/1561533040466127.png"
-                             alt="HTML微课课程介绍3">
+                        <img src="${courseDetail.dimgaddress}"
+                             alt="${course.cname}">
                         <br>
                     </p>
 
                         <h2>购买须知</h2>
 
-                        <p>1.&nbsp;本课程为图文内容+闯关形式，共60节。</p>
-                        <p>2. 在课程学习中，如有任何使用上的问题，请联系客服微信号：<b>xingqilin</b></p>
+                        <p>1.本课程为图文内容+闯关形式，共60节。</p>
+                        <p>2.在课程学习中，如有任何使用上的问题，请联系客服微信号：<b>xingqilin</b></p>
                         <p>（加微信可进相关交流群，与更多小伙伴讨论问题）。&nbsp;</p>
                         <p><br></p></div>
                 </div>
                 <!-- 课程目录 -->
-                <div id="menulist" class="courselist-item courselist-d ">
-                    <!--课程目录-->
-                    <div class="chapter-item">
-                        <h3>HTML 介绍(本章免费)<i class="icon i-icon i-icon-down"></i></h3>
-                        <ul class="chapter-box">
-                            <li data-cp="15" data-locked="unclock" data-preview="0">
-                                <a href="" title="HTML 是什么？">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>HTML 是什么？</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                            <li data-cp="19" data-locked="unclock" data-preview="0">
-                                <a href="" title="HTML 文档基本结构">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>HTML 文档基本结构</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                            <li data-cp="20" data-locked="unclock" data-preview="0">
-                                <a href="" title="创建 HTML 文件">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>创建 HTML 文件</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                            <li data-cp="10071" data-locked="unclock" data-preview="0" style="margin-left:30px;">
-                                <a href="" title="代码初体验，制作第一个网页">
-                                    <i class="icon w3c-icon w3c-icon-codecamp"></i>
-                                    <span>实战：代码初体验，制作第一个网页</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
+                <jsp:include page="courselist/${courseDetail.lessonpage}"/>
 
-                                </a>
-                            </li>
-                            <li data-cp="27" data-locked="unclock" data-preview="0">
-                                <a href="" title="HTML 元素">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>HTML 元素</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                            <li data-cp="28" data-locked="unclock" data-preview="0">
-                                <a href="" title="HTML 属性">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>HTML 属性</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                            <li data-cp="22" data-locked="unclock" data-preview="0">
-                                <a href="" title="小测试">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>小测试</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
+        <!--推荐课程侧边栏-->
         <div class="courselist-sidebar">
             <div class="sidebar-box">
                 <h2 class="sidebar-title">推荐课程</h2>
@@ -238,8 +218,21 @@
     </div>
 </div>
 <jsp:include page="footer.jsp"/>
-<script src="staticfront/js/jquery.min.js"></script>
-<script src="staticfront/js/bootstrap.js"></script>
 
+
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(function(){
+        $(".chapter-item h3").click(function () {
+            if ($(this).next('ul').is(":hidden")) {
+                $(this).next('ul').slideDown();
+                $(this).children("i").addClass("i-icon-down").removeClass("i-icon-up");
+            } else {
+                $(this).next('ul').slideUp();
+                $(this).children('i').addClass("i-icon-up").removeClass("i-icon-down");
+            }
+        });
+    });
+</script>
 </body>
 </html>

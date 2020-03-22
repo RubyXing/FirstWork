@@ -3,50 +3,68 @@
 <%String title = "课程列表页"; %>
 <%@ include file="header.jsp" %>
 <!--导航栏-->
-<div class="container-fluid">
-    <div class="accordion shadow" id="accordionExample">
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <button class="btn btn-block btn-outline-light text-left" type="button" data-toggle="collapse"
-                        data-target="#collapseOne"
-                        aria-expanded="true" aria-controls="collapseOne">
-                    <ul class="list-inline">
-                        方向：
-                        <li class="list-inline-item"><a
-                                href="${pageContext.request.contextPath}/courseList/list.do">全部</a></li>
+<div class="course-banner">
+    <div class="container course-filter-container">
+        <div class="course-tab-top">
+            <a href="courseList/list.do" class="course-tab-title active">课程</a>
+        </div>
+        <!-- 课程筛选列表 -->
+        <div class="course-nav-box">
+            <div class="course-nav-row">
+                <span class="course-nav-title">方向：</span>
+                <div class="course-nav-sort">
+                    <ul class="course-nav-list">
+                        <li class="active">
+                            <a href="${pageContext.request.contextPath}/courseList/list.do">全部</a>
+                        </li>
                         <c:forEach items="${direction}" var="tagsa">
                             <li class="list-inline-item">
                                 <a href="${pageContext.request.contextPath}/courseList/getTop.do?topid=${tagsa.tid}">${tagsa.tname}</a>
                             </li>
                         </c:forEach>
                     </ul>
-                </button>
+                </div>
             </div>
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                    <ul class="list-inline">
-                        标签：
-                        <li class="list-inline-item active">
-                            <a href="${pageContext.request.contextPath}">全部</a></li>
+            <div class="course-nav-row">
+                <span class="course-nav-title">标签：</span>
+                <div class="course-nav-sort">
+                    <ul class="course-nav-list course-all-tags">
+                        <li class="active">
+                            <a href="">全部</a>
+                        </li>
                         <c:forEach items="${type}" var="tagsa">
                             <li class="list-inline-item">
                                 <a href="${pageContext.request.contextPath}/courseList/getType.do?typeId=${tagsa.tid}">${tagsa.tname}</a>
                             </li>
                         </c:forEach>
                     </ul>
-                    <ul class="list-inline">
-                        类型：
-                        <li class="list-inline-item"><a
-                                href="">全部</a></li>
+                    <div class="show-more-box" style="display: none;">
+                        <a href="javascript:;" id="show-more-btn" data-type="open">更多 »</a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-nav-row">
+                <span class="course-nav-title">类型：</span>
+                <div class="course-nav-sort">
+                    <ul class="course-nav-list">
+                        <li class="active">
+                            <a href="">全部</a>
+                        </li>
                         <c:forEach items="${label}" var="tagsa">
                             <li class="list-inline-item">
                                 <a href="${pageContext.request.contextPath}/courseList/checkLabel.do?labelId=${tagsa.tid}">${tagsa.tname}</a>
                             </li>
                         </c:forEach>
                     </ul>
-                    <ul class="list-inline">
-                        条件：
-                        <li class="list-inline-item"><a href="">全部</a></li>
+                </div>
+            </div>
+            <div class="course-nav-row">
+                <span class="course-nav-title">条件：</span>
+                <div class="course-nav-sort">
+                    <ul class="course-nav-list">
+                        <li class="active">
+                            <a href="">全部</a>
+                        </li>
                         <c:forEach items="${condition}" var="tagsa">
                             <li class="list-inline-item">
                                 <a href="${pageContext.request.contextPath}/courseList/checkLabel.do?labelId=${tagsa.tid}">${tagsa.tname}</a>
@@ -62,16 +80,14 @@
 <!--课程展示栏-->
 <div class="course-content">
     <div class="container">
-        <!--课程顶部-->
         <div class="course-menu">
             <div class="course-menu-l">
                 <ul>
-                    <li class="active"><a
-                            href="/courses?direction=2120&amp;tag=0&amp;type=0&amp;condition=0&amp;order=0">综合</a>
+                    <li class="active"> <a href="courseList/list.do">综合</a>
                     </li>
-                    <li><a href="/courses?direction=2120&amp;tag=0&amp;type=0&amp;condition=0&amp;order=1">最热</a>
+                    <li> <a href="courseList/list.do">最热</a>
                     </li>
-                    <li><a href="/courses?direction=2120&amp;tag=0&amp;type=0&amp;condition=0&amp;order=2">最新</a>
+                    <li> <a href="courseList/list.do">最新</a>
                     </li>
                 </ul>
             </div>
@@ -81,12 +97,15 @@
                 </a>
             </div>
         </div>
+
+
+
         <!--课程列表-->
         <div class="course-list">
             <ul class="clearfix course-item">
                 <c:forEach items="${courseList}" var="cou">
                     <li class="fl">
-                        <a href="/detail/course.do?courseId=${cou.cid}" target="_blank" class="course-box">
+                        <a href="${pageContext.request.contextPath}/detail/course.do?courseId=${cou.cid}" target="_blank" class="course-box">
                             <div class="course-img">
                                 <img src="${cou.cimgaddress}"
                                      alt="${cou.cname}">
@@ -109,12 +128,12 @@
                                     <c:choose>
                                         <c:when test="${cou.ccondition!=401}">
                                             <span class="cur-price ">
-                                            <fmt:formatNumber type="number" value="${cou.cprice*cou.crebate}"
+                                            ¥<fmt:formatNumber type="number" value="${cou.cprice*cou.crebate}"
                                                               pattern="0.00"
                                                               maxFractionDigits="2"/>
                                             </span>
                                             <c:if test="${cou.crebate!=1}">
-                                                <del class="pre-price">${cou.cprice}</del>
+                                                <del class="pre-price">¥${cou.cprice}</del>
                                             </c:if>
                                         </c:when>
                                         <c:otherwise>
@@ -135,7 +154,7 @@
                                                 <div class="vipinfo-show">
                                                     <span class="vipinfo-meta vipprice-tag">VIP</span>
                                                     <span class="vipprice-price">
-                                                        <fmt:formatNumber type="number"
+                                                        ¥<fmt:formatNumber type="number"
                                                                           value="${cou.cprice*cou.crebate*0.8}"
                                                                           pattern="0.00"
                                                                           maxFractionDigits="2"/>
@@ -151,7 +170,6 @@
                                             <span class="discount-time">仅剩14小时</span>
                                         </div>
                                     </c:if>
-
                                 </div>
                             </div>
                         </a>

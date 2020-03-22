@@ -8,6 +8,7 @@ public class Cdetails {
     private int dsmaller;
     private double dscore;
     private String dimgaddress;
+    private String lessonpage;
 
 
     public int getDid() {
@@ -54,11 +55,23 @@ public class Cdetails {
         this.dimgaddress = dimgaddress;
     }
 
+    public String getLessonpage() {
+        return lessonpage;
+    }
+
+    public void setLessonpage(String lessonpage) {
+        this.lessonpage = lessonpage;
+    }
+
     @Override
     public String toString() {
         return "Cdetails{" +
                 "did=" + did +
                 ", dlessons=" + dlessons +
+                ", dsmaller=" + dsmaller +
+                ", dscore=" + dscore +
+                ", dimgaddress='" + dimgaddress + '\'' +
+                ", lessonpage='" + lessonpage + '\'' +
                 '}';
     }
 }

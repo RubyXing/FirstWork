@@ -509,7 +509,7 @@
 
 .course-list .course-item li {
     width: 205px;
-    height: 258px;
+    height: 300px;
     margin-left: 26px;
     margin-bottom: 10px;
 }
@@ -552,7 +552,7 @@
     .course-list .course-item li {
         width: 225px;
         margin-left: 26px;
-        height: 272px;
+        height: 300px;
     }
 
     .course-list .course-img {

@@ -17,15 +17,12 @@
     <link rel="stylesheet" type="text/css" href="staticfront/css/course.css">
     <link rel="stylesheet" type="text/css" href="staticfront/css/minicourse.css">
     <link rel="stylesheet" type="text/css" href="staticfront/css/w3.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <style>
         li {
             display: list-item;
             text-align: -webkit-match-parent;
             list-style: none;
-        }
-
-        .fl {
-            float: left;
         }
 
         /*详情图片展示*/
@@ -45,20 +42,15 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="./">首页 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/courseList/list.do">课程列表</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
-            </li>
+        <ul class="header-menu">
+            <li><a href="courseList/list.do" title="编程入门教程">首页</a></li>
+            <li><a href="courseList/list.do" title="编程课程">编程课程</a></li>
+            <li><a href="" title="VIP会员" class="header-menu-vip ">VIP会员<i class="hot-icon">HOT</i></a></li>
         </ul>
-        <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2 search-query" type="text" placeholder="搜索">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
-        </form>
+        <div class="course-menu-r">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form></div>
     </div>
 </nav>
