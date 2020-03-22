@@ -29,7 +29,7 @@ public class CouresDao {
         Courselist courselist = null;
         String sql = "select * from courselist where cid=" + courseId;
         try {
-            courselist = qr.query(connect.getCon(), sql, new BeanHandler<Courselist>(Courselist.class));
+            courselist = qr.query(connect.getCon(), sql, new BeanHandler<>(Courselist.class));
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("获取具体课程失败");
@@ -37,4 +37,5 @@ public class CouresDao {
 
         return courselist;
     }
+
 }

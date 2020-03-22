@@ -54,4 +54,11 @@ public class Cdetails {
         this.dimgaddress = dimgaddress;
     }
 
+    @Override
+    public String toString() {
+        return "Cdetails{" +
+                "did=" + did +
+                ", dlessons=" + dlessons +
+                '}';
+    }
 }

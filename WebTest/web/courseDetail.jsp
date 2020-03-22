@@ -238,8 +238,8 @@
     </div>
 </div>
 <jsp:include page="footer.jsp"/>
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="staticfront/js/jquery.min.js"></script>
+<script src="staticfront/js/bootstrap.js"></script>
 
 </body>
 </html>

@@ -3,7 +3,6 @@ package com.xing.dao;
 import com.xing.jdbcUtil.JdbcConnect;
 import com.xing.pojo.Ctag;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.ArrayListHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
@@ -17,7 +16,7 @@ public class TagDao {
     public List<Ctag> getShowList() {
         List<Ctag> query = null;
         try {
-            query = qr.query(connect.getCon(), "select * from ctag", new BeanListHandler<Ctag>(Ctag.class));
+            query = qr.query(connect.getCon(), "select * from ctag", new BeanListHandler<>(Ctag.class));
             query.forEach(System.out::println);
         } catch (SQLException e) {
             e.printStackTrace();

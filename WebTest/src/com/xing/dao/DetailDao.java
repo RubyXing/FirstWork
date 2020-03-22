@@ -15,7 +15,7 @@ public class DetailDao {
         Cdetails cdetails = null;
         String sql = "select * from cdetails where did=" + courseId;
         try {
-            cdetails = qr.query(connect.getCon(), sql, new BeanHandler<Cdetails>(Cdetails.class));
+            cdetails = qr.query(connect.getCon(), sql, new BeanHandler<>(Cdetails.class));
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("获取详细课程失败");

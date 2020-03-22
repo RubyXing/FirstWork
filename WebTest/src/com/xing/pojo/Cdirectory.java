@@ -54,4 +54,11 @@ public class Cdirectory {
         this.titleb = titleb;
     }
 
+    @Override
+    public String toString() {
+        return "Cdirectory{" +
+                "id=" + id +
+                ", smallname='" + smallname + '\'' +
+                '}';
+    }
 }
