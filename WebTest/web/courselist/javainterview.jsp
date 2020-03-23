@@ -6,10 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div id="menulist" class="courselist-item courselist-d  active">
+<div id="menulist" class="courselist-item courselist-d">
     <!--课程目录-->
     <div class="chapter-item">
-        <h3>第一讲  数据类型与字符串<i class="icon i-icon i-icon-down"></i></h3>
+        <h3>第一讲 数据类型与字符串<i class="icon i-icon i-icon-down"></i></h3>
         <ul class="chapter-box">
             <li data-cp="10927" data-locked="unclock" data-preview="0">
                 <a href="/minicourse/play/00007?cp=10927&amp;gid=0" title="6道真题自测：Java数据类型与字符串">

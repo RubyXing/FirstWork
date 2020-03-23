@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div id="menulist" class="courselist-item courselist-d  active">
+<div id="menulist" class="courselist-item courselist-d">
     <!--课程目录-->
     <div class="chapter-item">
         <h3>HTML 介绍(本章免费)<i class="icon i-icon i-icon-down"></i></h3>

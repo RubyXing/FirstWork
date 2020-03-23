@@ -10,639 +10,75 @@
     <link rel="stylesheet" type="text/css" href="staticfront/css/w3.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <style>
-        li {
-            display: list-item;
-            text-align: -webkit-match-parent;
-            list-style: none;
+        html,
+        body {
+            height: 100%;
         }
 
-        .fl {
-            float: left;
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
         }
 
-        /*详情图片展示*/
-        .content-intro img {
-            border: 0;
-            max-width: 100%;
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
         }
+
+        .form-signin .checkbox {
+            font-weight: 400;
+        }
+
+        .form-signin .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
     </style>
-    <script>
-        $(function(){
-        $(".chapter-item h3").click(function () {
-            if ($(this).next('ul').is(":hidden")) {
-                $(this).next('ul').slideDown();
-                $(this).children("i").addClass("i-icon-down").removeClass("i-icon-up");
-            } else {
-                $(this).next('ul').slideUp();
-                $(this).children('i').addClass("i-icon-up").removeClass("i-icon-down");
-            }
-        });
-        });
-    </script>
 </head>
-<body>
-<div class="courselist-content">
-    <div class="index-wrapper">
-        <div class="courselist-list">
-            <div class="courselist-nav">
-                <ul class="courselist-nav-tabs">
-                    <li targid="morecontent" id="courselist-morecontent" class="courselist-nav-li">
-                        <a href="#morecontent" title="课程介绍" class="courselist-nav-name">课程介绍</a>
-                    </li>
-                    <li targid="menulist" id="courselist-menulist" class="courselist-nav-li active">
-                        <a href="#menulist" title="课程目录" class="courselist-nav-name ">课程目录
-                            <span class="preview-icon">试学</span>
-                        </a>
-                    </li>
-                    <li targid="userevaluation" id="courselist-userevaluation" class="courselist-nav-li">
-                        <a href="#userevaluation" title="课程评价" class="courselist-nav-name">课程评价</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="courselist-body">
-                <!-- 课程介绍 -->
-                <div id="morecontent" class="courselist-item courselist-d">
-                    <div class="courseinfo-intro content-intro"><p><img src="https://atts.w3cschool.cn/attachments/image/20191203/1575339206870664.png" alt="JSP微课-02"><br></p><p><br></p></div>
-                </div>
-                <!-- 课程目录 -->
-                <div id="menulist" class="courselist-item courselist-d active">
-                    <!--课程目录-->
-                    <div class="chapter-item">
-                        <h3>第一章 Java Web 简介<i class="icon i-icon i-icon-up"></i></h3>
-                        <ul class="chapter-box" style="display: none;">
-                            <li data-cp="11104" data-locked="unclock" data-preview="0">
-                                <a href="/minicourse/play/javaserverpages?cp=11104&amp;gid=0" title="1.1 什么是Web应用程序">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>1.1 什么是Web应用程序</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                            <li data-cp="11105" data-locked="unclock" data-preview="0">
-                                <a href="/minicourse/play/javaserverpages?cp=11105&amp;gid=0" title="1.2 静态网页与动态网页">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>1.2 静态网页与动态网页</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                            <li data-cp="11106" data-locked="unclock" data-preview="0">
-                                <a href="/minicourse/play/javaserverpages?cp=11106&amp;gid=0" title="1.3 搭建Java Web开发环境">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>1.3 搭建Java Web开发环境</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                            <li data-cp="11107" data-locked="unclock" data-preview="0">
-                                <a href="/minicourse/play/javaserverpages?cp=11107&amp;gid=0" title="1.4 Tomcat目录结构">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>1.4 Tomcat目录结构</span>
-                                    <span class="text-center icon-section-right preview-icon">试学</span>
-                                </a>
-                            </li>
-                            <li data-cp="11108" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="1.5 手工编写第一个Java Web程序">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>1.5 手工编写第一个Java Web程序</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11109" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="1.6 WEB-INF目录详解">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>1.6 WEB-INF目录详解</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11110" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="1.7 IntelliJ IDEA开发Java Web程序">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>1.7 IntelliJ IDEA开发Java Web程序</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                    <span class="fr text-right media-duration" data-mediaduration="269.87">04:29</span>
-                                </a>
-                            </li>
-                            <li data-cp="11111" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="1.8 修改Tomcat服务器默认端口号">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>1.8 修改Tomcat服务器默认端口号</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--课程目录-->
-                    <div class="chapter-item">
-                        <h3>第二章 JSP基础语法<i class="icon i-icon i-icon-up"></i></h3>
-                        <ul class="chapter-box" style="display: none;">
-                            <li data-cp="11113" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="2.1 JSP简介">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>2.1 JSP简介</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11114" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="2.2 常见动态网站开发技术对比">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>2.2 常见动态网站开发技术对比</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11115" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="2.3 JSP页面元素简介及page指令">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>2.3 JSP页面元素简介及page指令</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11116" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="2.4 JSP注释">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>2.4 JSP注释</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11183" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="2.5 JSP语法">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>2.5 JSP语法</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11120" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="2.6 JSP页面生命周期">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>2.6 JSP页面生命周期</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                    <span class="fr text-right media-duration" data-mediaduration="380.11">06:20</span>
-                                </a>
-                            </li>
-                            <li data-cp="11121" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="2.7 小节项目">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>2.7 小节项目</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                    <span class="fr text-right media-duration" data-mediaduration="302.07">05:02</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--课程目录-->
-                    <div class="chapter-item">
-                        <h3>第三章 JSP内置对象（上）<i class="icon i-icon i-icon-up"></i></h3>
-                        <ul class="chapter-box" style="display: none;">
-                            <li data-cp="11124" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="3.1 JSP内置对象简介">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>3.1 JSP内置对象简介</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11188" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="3.2 web程序的请求与响应模式">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>3.2 web程序的请求与响应模式</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11189" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="3.3 out对象">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>3.3 out对象</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11190" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="3.4 get与post提交方式的区别">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>3.4 get与post提交方式的区别</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11191" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="3.5 request对象">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>3.5 request对象</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11193" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="3.6 response对象">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>3.6 response对象</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11210" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="3.7 请求重定向与请求转发的区别">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>3.7 请求重定向与请求转发的区别</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--课程目录-->
-                    <div class="chapter-item">
-                        <h3>第四章 JSP内置对象（下）<i class="icon i-icon i-icon-up"></i></h3>
-                        <ul class="chapter-box" style="display: none;">
-                            <li data-cp="11125" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="4.1 什么是session">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>4.1 什么是session</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11194" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="4.2 session对象">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>4.2 session对象</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11195" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="4.3 session的生命周期">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>4.3 session的生命周期</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11196" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="4.4 application对象">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>4.4 application对象</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11197" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="4.5 page对象">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>4.5 page对象</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11198" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="4.6 pageContext对象和config对象">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>4.6 pageContext对象和config对象</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11199" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="4.7 exception对象">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>4.7 exception对象</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11200" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="4.8 实操案例——实现用户登录（上）">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>4.8 实操案例——实现用户登录（上）</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                    <span class="fr text-right media-duration" data-mediaduration="376.07">06:16</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--课程目录-->
-                    <div class="chapter-item">
-                        <h3>第五章 JavaBeans<i class="icon i-icon i-icon-up"></i></h3>
-                        <ul class="chapter-box" style="display: none;">
-                            <li data-cp="11127" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="5.1 JavaBean简介及设计原则">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>5.1 JavaBean简介及设计原则</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11128" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="5.2 什么是JSP动作元素">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>5.2 什么是JSP动作元素</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11129" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="5.3 使用普通方式创建JavaBean">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>5.3 使用普通方式创建JavaBean</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11130" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="5.4 useBean动作元素">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>5.4 useBean动作元素</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11131" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="5.5 setProperty">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>5.5 setProperty</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11132" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="5.6 getProperty">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>5.6 getProperty</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11133" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="5.7 JavaBean四个作用域范围">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>5.7 JavaBean四个作用域范围</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11134" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="5.8 Model简介">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>5.8 Model简介</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11135" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="5.9 实操案例——实现用户登录（下）">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>5.9 实操案例——实现用户登录（下）</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                    <span class="fr text-right media-duration" data-mediaduration="241.47">04:01</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--课程目录-->
-                    <div class="chapter-item">
-                        <h3>第六章 JSP状态管理<i class="icon i-icon i-icon-up"></i></h3>
-                        <ul class="chapter-box" style="display: none;">
-                            <li data-cp="11201" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="6.1 http协议的无状态性">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>6.1 http协议的无状态性</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11202" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="6.2 Cookie概述">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>6.2 Cookie概述</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11203" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="6.3 JSP页面中创建与使用Cookie">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>6.3 JSP页面中创建与使用Cookie</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11245" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="6.4 案例：Cookie在登录中的应用">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>6.4 案例：Cookie在登录中的应用</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                    <span class="fr text-right media-duration" data-mediaduration="380.07">06:20</span>
-                                </a>
-                            </li>
-                            <li data-cp="11205" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="6.5 Session与Cookie的对比">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>6.5 Session与Cookie的对比</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--课程目录-->
-                    <div class="chapter-item">
-                        <h3>第七章 JSP指令与动作元素<i class="icon i-icon i-icon-up"></i></h3>
-                        <ul class="chapter-box" style="display: none;">
-                            <li data-cp="11206" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="7.1 include指令">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>7.1 include指令</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11207" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="7.2 include动作">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>7.2 include动作</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11208" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="7.3 include指令与include动作的区别">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>7.3 include指令与include动作的区别</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                            <li data-cp="11209" data-locked="lock" data-preview="1">
-                                <a href="javascript:;" title="7.4 forward动作与param动作">
-                                    <i class="icon w3c-icon w3c-icon-content"></i>
-                                    <span>7.4 forward动作与param动作</span>
-                                    <span class="icon-section-right"><i class="icon i-icon i-icon-locked"></i></span>
-
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- 课程评价 -->
-                <div id="userevaluation" class="courselist-item courselist-d">
-                    <div class="totalScore empty-totalScore clearFix">该课程暂无评价噢！</div>
-                    <div class="history-eval">
-                        <ul class="eval-item">
-                        </ul>
-                        <div class="multipage">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="courselist-sidebar">
-            <div class="sidebar-box">
-                <h2 class="sidebar-title">推荐课程</h2>
-                <div class="recom-list">
-                    <ul class="recom-item">
-                        <li>
-                            <a href="/minicourse/play/00007" class="recom-course-img">
-                                <img src="//atts.w3cschool.cn/attachments/cover/cover_00007.png?t=1583808721" alt="">
-                            </a>
-                            <div class="recom-course-content">
-                                <a href="/minicourse/play/00007" class="recom-course-name" target="_blank">Java面试 基础题应知应会</a>
-                                <div class="recom-course-meta">
-                                    <span class="recom-course-people">2246人参与</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="/minicourse/play/javaserverpages" class="recom-course-img">
-                                <img src="//atts.w3cschool.cn/attachments/cover/cover_javaserverpages.png?t=1584528381" alt="">
-                            </a>
-                            <div class="recom-course-content">
-                                <a href="/minicourse/play/javaserverpages" class="recom-course-name" target="_blank">JSP 微课</a>
-                                <div class="recom-course-meta">
-                                    <span class="recom-course-people">1058人参与</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="/minicourse/play/javaminicourse" class="recom-course-img">
-                                <img src="//atts.w3cschool.cn/attachments/cover/cover_javaminicourse.jpeg?t=1583918128" alt="">
-                            </a>
-                            <div class="recom-course-content">
-                                <a href="/minicourse/play/javaminicourse" class="recom-course-name" target="_blank">Java微课</a>
-                                <div class="recom-course-meta">
-                                    <span class="recom-course-people">45788人参与</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="/minicourse/play/java8_my" class="recom-course-img">
-                                <img src="//atts.w3cschool.cn/attachments/cover/cover_java8_my.jpeg?t=1571658776" alt="">
-                            </a>
-                            <div class="recom-course-content">
-                                <a href="/minicourse/play/java8_my" class="recom-course-name" target="_blank">Java8编程开发入门</a>
-                                <div class="recom-course-meta">
-                                    <span class="recom-course-people">3161人参与</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="/minicourse/play/java2_my" class="recom-course-img">
-                                <img src="//atts.w3cschool.cn/attachments/cover/cover_java2_my.jpeg?t=1571660245" alt="">
-                            </a>
-                            <div class="recom-course-content">
-                                <a href="/minicourse/play/java2_my" class="recom-course-name" target="_blank">深入解析Java面向对象</a>
-                                <div class="recom-course-meta">
-                                    <span class="recom-course-people">367人参与</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="/minicourse/play/fanshe_my" class="recom-course-img">
-                                <img src="//atts.w3cschool.cn/attachments/cover/cover_fanshe_my.jpeg?t=1583809755" alt="">
-                            </a>
-                            <div class="recom-course-content">
-                                <a href="/minicourse/play/fanshe_my" class="recom-course-name" target="_blank">浅谈Java反射技术</a>
-                                <div class="recom-course-meta">
-                                    <span class="recom-course-people">447人参与</span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!--广告放置-->
-            <div class="abox-item">    <div class="sidebar-box">        <div class="abox">            <a href="https://www.w3cschool.cn/minicourse/play/python_office" target="_blank"><img src="https://atts.w3cschool.cn/attachments/image/20200302/1583146659834591.png" alt=""></a>        </div>                                                            </div></div></div>
+<body class="text-center">
+<form class="form-signin">
+    <img class="mb-4" src="https://7n.w3cschool.cn/statics/img/logo/indexlogo@2x.png" alt="" width="300" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
     </div>
-</div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">© 2017-2020</p>
+</form>
 
-<div id="footer_item">
-    <div id="footer">
-        <div class="footer-box">
-            <div class="footer-title">网站相关</div>
-            <ul class="footer-items">
-                <li><a href="//www.w3cschool.cn/about/about.html">关于我们</a></li>
-                <li><a href="//www.w3cschool.cn/about/join.html">加入我们</a></li>
-                <li><a href="//www.w3cschool.cn/sitemap/">网站地图</a></li>
-                <li><a target="_blank" href="//www.w3cschool.cn/links" title="友情链接">友情链接</a></li>
-            </ul>
-        </div>
-        <div class="footer-box">
-            <div class="footer-title">内容专区</div>
-            <ul class="footer-items">
-                <li><a href="//www.w3cschool.cn/tutorial" title="编程入门教程">编程入门教程</a></li>
-                <li><a href="//www.w3cschool.cn/manual" title="技术文档参考手册">极客文档</a></li>
-                <li><a href="https://123.w3cschool.cn/webtools" title="编程在线工具">在线工具</a></li>
-                <li><a href="//www.w3cschool.cn/archives/" title="文章存档">文章存档</a></li>
-            </ul>
-        </div>
-        <div class="footer-box">
-            <div class="footer-title">常用链接</div>
-            <ul class="footer-items">
-                <li><a href="//123.w3cschool.cn" title="技术学习极客导航">极客导航</a></li>
-                <li><a href="//www.w3cschool.cn/codecamp/" target="_blank" title="编程实战">编程实战</a></li>
-                <li><a href="//www.w3cschool.cn/download" target="_blank" title="w3cschool离线版下载">w3cschool离线下载</a></li>
-                <li><a href="https://m.w3cschool.cn/" target="_blank" title="w3cschool手机版">w3cschool手机版</a></li>
-            </ul>
-        </div>
-        <div class="footer-box">
-            <div class="footer-title">联系我们</div>
-            <ul class="footer-items">
-                <li><a target="_blank" href="https://www.w3cschool.cn/w3cschool/question-10232085.html" title="常见问题QA">常见问题QA</a></li>
-                <li><a href="//www.w3cschool.cn/lecturerApply" target="_blank">课程合作</a></li>
-                <li><a target="_blank" href="https://jq.qq.com/?_wv=1027&amp;k=5mjhkIY" ref="nofollow">官方QQ群：668469541</a></li>
-                <li><a target="_blank" href="//wpa.qq.com/msgrd?v=3&amp;uin=3532917531&amp;site=qq&amp;menu=yes" ref="nofollow">商务合作QQ：3532917531</a></li>
-            </ul>
-        </div>
-
-        <!-- 这里是hjf加的 -->
-        <div class="footer-box">
-            <div class="tcode"><img src="//7n.w3cschool.cn/statics/images/w3c/app-qrcode2.png" alt="加入App二维码" width="100" height="100"></div>
-            <p class="tcode-txt">下载App</p>
-        </div>
-
-        <div class="footer-box">
-            <div class="tcode"><img src="//7n.w3cschool.cn/statics/images/w3c/mp-qrcode.png" alt="微信订阅号" width="100" height="100"></div>
-            <p class="tcode-txt">关注公众号</p>
-        </div>
-
-    </div>
-    <div class="footer-bottom">
-        <p>Copyright©2019 亿动科技 <a href="/" title="编程狮">编程狮&nbsp;w3cschool.cn</a> All Rights Reserved.<a href="http://www.beian.miit.gov.cn/" target="_blank" class="footer-record">&nbsp;闽ICP备15016281号-3</a></p>
-    </div>
-</div>
-<img src="staticfront/img/xiaobaiHTML.png">
 
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

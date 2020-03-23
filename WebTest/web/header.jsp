@@ -33,24 +33,32 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md bg-light border-bottom">
-    <a class="navbar-brand" href="#">
-        <img src="https://7n.w3cschool.cn/statics/images/logonew2.png" width="120"/>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="header-menu">
-            <li><a href="courseList/list.do" title="编程入门教程">首页</a></li>
-            <li><a href="courseList/list.do" title="编程课程">编程课程</a></li>
-            <li><a href="" title="VIP会员" class="header-menu-vip ">VIP会员<i class="hot-icon">HOT</i></a></li>
-        </ul>
-        <div class="course-menu-r">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form></div>
+<div id="header_item" class="header-with-search">
+    <div id="header_index">
+        <div id="header-l">
+            <a href="courseList/list.do" title="w3cschool" class="logo"><img
+                    src="//7n.w3cschool.cn/statics/images/logonew2.png" alt="w3cschool"></a>
+            <ul class="header-menu">
+                <li><a href="courseList/list.do" title="编程入门教程">首页</a></li>
+                <li><a href="courseList/list.do" title="编程课程" class="active">编程课程</a></li>
+                <li><a href="" title="VIP会员" class="header-menu-vip ">VIP会员<i
+                        class="hot-icon">HOT</i></a></li>
+            </ul>
+        </div>
+
+        <div class="fr h-right">
+            <div class="fl sig-box">
+                <div><a class="link" href="account/login.do">注册</a><span
+                        class="sep">|</span><a class="link" href="account/login.do">登录</a></div>
+            </div>
+        </div>
+
+        <div class="fr searchbox">
+            <form action="courseList/search.do" target="_self">
+                <input type="text" name="w" class="box" id="searched_content" placeholder="输入关键字搜索...">
+                <button type="submit" class="button"></button>
+            </form>
+        </div>
+
     </div>
-</nav>
+</div>
