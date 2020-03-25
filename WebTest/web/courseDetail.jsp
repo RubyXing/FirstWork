@@ -70,15 +70,15 @@
                         <c:choose>
                             <c:when test="${course.ccondition==402}">
                                 <div class="get-vipprice-box">
-                                <span class="vipprice-tips">开通VIP会员，本门课程<em>免费学</em></span>
-                                <a href=""
-                                   target="_blank" class="vipprice-btn">立即开通&nbsp;&gt;</a>
+                                    <span class="vipprice-tips">开通VIP会员，本门课程<em>免费学</em></span>
+                                    <a href=""
+                                       target="_blank" class="vipprice-btn">立即开通&nbsp;</a>
                                 </div>
                             </c:when>
                             <c:when test="${course.ccondition==403}">
                                 <div class="get-vipprice-box">
                                     <span class="vipprice-tips">开通VIP会员，购买仅需&nbsp;<em>
-                                        <b>¥<fmt:formatNumber type="number" value="${course.cprice*course.crebate}"
+                                        <b>¥<fmt:formatNumber type="number" value="${course.cprice*course.crebate*0.8}"
                                                               pattern="0.00"
                                                               maxFractionDigits="2"/>
                                         </b></em></span>
@@ -86,11 +86,11 @@
                                 </div>
                             </c:when>
                         </c:choose>
-
                     </div>
+
                     <div class="courselist-banner-footer">
-                        <a href="javascript:;" class="go-btn login-btn tologin">登录学习</a>
-                        <a href="" class="go-btn try-btn">免费试学</a>
+                        <a href="<%=baseUrl%>login.jsp" class="go-btn login-btn tologin">登录学习</a>
+                        <a href="my/shopping.do" class="go-btn try-btn">加入购物车</a>
                     </div>
                 </div>
             </div>
@@ -217,9 +217,8 @@
         </div>
     </div>
 </div>
+
 <jsp:include page="footer.jsp"/>
-
-
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
     $(function(){

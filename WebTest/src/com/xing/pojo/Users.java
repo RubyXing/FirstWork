@@ -8,6 +8,7 @@ public class Users {
   private String upwd;
   private String uemail;
   private String uphone;
+    private int uvip;
 
 
   public int getUid() {
@@ -46,12 +47,21 @@ public class Users {
   }
 
 
-  public String getUphone() {
-    return uphone;
-  }
+    public String getUphone() {
+        return uphone;
+    }
 
-  public void setUphone(String uphone) {
-    this.uphone = uphone;
-  }
+    public void setUphone(String uphone) {
+        this.uphone = uphone;
+    }
+
+
+    public int getUvip() {
+        return uvip;
+    }
+
+    public void setUvip(int uvip) {
+        this.uvip = uvip;
+    }
 
 }

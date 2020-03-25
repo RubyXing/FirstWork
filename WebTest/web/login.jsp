@@ -1,11 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+%>
 <html>
+<base href="<%=baseUrl%>">
 <head>
     <meta charset="utf-8">
     <title>注册</title>
 
-    <link rel="stylesheet" href="staticfront/css/common.css">
-    <link rel="stylesheet" href="staticfront/css/view.css">
+    <link rel="stylesheet" type="text/css" href="staticfront/css/common.css">
+    <link rel="stylesheet" type="text/css" href="staticfront/css/view.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 
@@ -77,12 +81,16 @@
         $(document).ready(function () {
             $("#login").click(function () {
                 $("#registdiv").hide();
+                $("#register").removeClass("lm-tabs-tab-active");
                 $("#logindiv").show();
+                $("#login").addClass("lm-tabs-tab-active");
                 $("#colorbar").css("left", "65px");
             });
             $("#register").click(function () {
                 $("#logindiv").hide();
+                $("#login").removeClass("lm-tabs-tab-active");
                 $("#registdiv").show();
+                $("#register").addClass("lm-tabs-tab-active");
                 $("#colorbar").css("left", "193px");
             });
         });
@@ -97,42 +105,37 @@
         <div class="lm-tabs">
             <div class="lm-tabs-nav" style="border-bottom: 2px solid rgb(232, 234, 236);">
                 <div id="login" class="lm-tabs-tab lm-tabs-tab-active" data-key="0">登录</div>
-                <div id="register" class="lm-tabs-tab " data-key="1">注册</div>
-                <!--193-->
+                <div id="register" class="lm-tabs-tab  " data-key="1">注册</div>
+
                 <div id="colorbar" class="lm-tabs-ink" style="left: 65px; width: 80px;"></div>
             </div>
             <div class="lm-tabs-content">
-
+                <!--登录-->
                 <div id="logindiv" class="lm-tabpanel lm-tabpanel-login">
-                    <form class="lm-form login-form">
+                    <form class="lm-form login-form" method="post" action="<%=baseUrl%>account/login.do">
                         <div class="lm-form-item">
-                            <div class="lm-input-wrapper"><input type="text" placeholder="学号/手机号/邮箱"
-                                                                 class="lm-input lm-input-lg lm-input-lg-with-prefix"><span
-                                    class="lm-input-prefix lm-input-lg-prefix"><i class="i-icon i-icon-user"></i></span>
-                            </div>
-                            <div class="lm-form-item-error-tip"></div>
-                        </div>
-                        <div class="lm-form-item">
-                            <div class="lm-input-wrapper"><input type="password" placeholder="登录密码"
-                                                                 class="lm-input lm-input-lg lm-input-lg-with-prefix lm-input-lg-with-suffix"><span
-                                    class="lm-input-prefix lm-input-lg-prefix"><i
-                                    class="i-icon i-icon-lock-outline"></i></span><span
-                                    class="lm-input-suffix lm-input-lg-suffix"><i
-                                    class="i-icon i-icon-eye-close hover-icon"></i></span></div>
-                            <div class="lm-form-item-error-tip"></div>
-                        </div>
-                        <div class="lm-form-item scode" style="display: none;">
                             <div class="lm-input-wrapper">
-                                <input type="text" placeholder="请输入验证码" maxlength="4"
-                                       autocomplete="off"
-                                       class="lm-input lm-input-lg lm-input-lg-with-suffix">
-                                <span class="lm-input-suffix lm-input-lg-suffix">
-                                    <i class="i-icon i-icon-refresh hover-icon" title="更新验证码"></i></span>
-                                <div class="scode-img scode-img-large">
-                                    <img src="/scode" alt="更新验证码" title="点击更新验证码" height="100%"></div>
+                                <input type="text" placeholder="学号/手机号/邮箱"
+                                       class="lm-input lm-input-lg lm-input-lg-with-prefix"
+                                       name="usermessage">
+                                <span class="lm-input-prefix lm-input-lg-prefix">
+                                    <i class="i-icon i-icon-user"></i></span>
                             </div>
                             <div class="lm-form-item-error-tip"></div>
                         </div>
+                        <div class="lm-form-item">
+                            <div class="lm-input-wrapper">
+                                <input type="password" placeholder="登录密码"
+                                       class="lm-input lm-input-lg lm-input-lg-with-prefix lm-input-lg-with-suffix"
+                                       name="userpwd">
+                                <span class="lm-input-prefix lm-input-lg-prefix">
+                                    <i class="i-icon i-icon-lock-outline"></i></span>
+                                <span class="lm-input-suffix lm-input-lg-suffix">
+                                    <i class="i-icon i-icon-eye-close hover-icon"></i></span>
+                            </div>
+                            <div class="lm-form-item-error-tip"></div>
+                        </div>
+
                         <div class="clearfix lm-form-item">
                             <label class="lm-checkbox-wrapper">
                                 <span class="lm-checkbox">
@@ -147,22 +150,52 @@
                         </div>
                     </form>
                 </div>
-
+                <!--注册-->
                 <div id="registdiv" class="lm-tabpanel lm-tabpanel-regist" style="display: none;">
                     <form class="lm-form regist-form" autocomplete="off"><input type="text"
                                                                                 style="display: none;"><input
                             type="password" style="display: none;">
                         <div>
                             <div class="lm-form-item">
-                                <div class="lm-input-wrapper"><input type="text" placeholder="请输入注册手机号"
-                                                                     class="lm-input lm-input-lg lm-input-lg-with-prefix"><span
-                                        class="lm-input-prefix lm-input-lg-prefix"><i class="i-icon i-icon-mobile"></i></span>
+                                <div class="lm-input-wrapper">
+                                    <input type="text" placeholder="请输入用户名"
+                                           class="lm-input lm-input-lg lm-input-lg-with-prefix"><span
+                                        class="lm-input-prefix lm-input-lg-prefix">
+                                    <i class="i-icon i-icon-mobile"></i></span>
                                 </div>
                                 <div class="lm-form-item-error-tip"></div>
                             </div>
+                            <div class="lm-form-item">
+                                <div class="lm-input-wrapper">
+                                    <input type="text" placeholder="请输入注册手机号"
+                                           class="lm-input lm-input-lg lm-input-lg-with-prefix"><span
+                                        class="lm-input-prefix lm-input-lg-prefix">
+                                    <i class="i-icon i-icon-mobile"></i></span>
+                                </div>
+                                <div class="lm-form-item-error-tip"></div>
+                            </div>
+                            <div class="lm-form-item">
+                                <div class="lm-input-wrapper">
+                                    <input type="text" placeholder="请输入邮箱"
+                                           class="lm-input lm-input-lg lm-input-lg-with-prefix"><span
+                                        class="lm-input-prefix lm-input-lg-prefix">
+                                    <i class="i-icon i-icon-mobile"></i></span>
+                                </div>
+                                <div class="lm-form-item-error-tip"></div>
+                            </div>
+                            <div class="lm-form-item">
+                                <div class="lm-input-wrapper">
+                                    <input type="password" placeholder="请输入密码"
+                                           class="lm-input lm-input-lg lm-input-lg-with-prefix"><span
+                                        class="lm-input-prefix lm-input-lg-prefix">
+                                    <i class="i-icon i-icon-mobile"></i></span>
+                                </div>
+                                <div class="lm-form-item-error-tip"></div>
+                            </div>
+
                             <div class="lm-form-item auth">
                                 <button type="button" class="lm-btn lm-btn-lg lm-btn-block lm-btn-primary"
-                                        onselectstart="return false">点击按钮进行验证
+                                        onselectstart="return false">注册
                                 </button>
                                 <div class="popup">
                                     <div class="popup-close"><i class="i-icon i-icon-close"></i></div>
@@ -181,7 +214,7 @@
                                     class="lm-checkbox"><input type="checkbox" checked=""
                                                                class="lm-checkbox-input"><span
                                     class="lm-checkbox-inner"></span></span><span class="lm-checkbox-word">我已阅读并同意<a
-                                    class="regist-agreement" href="/webagreement"
+                                    class="regist-agreement" href="https://www.w3cschool.cn/webagreement"
                                     target="_blank">《用户注册协议》</a></span></label>
                                 <div class="lm-form-item-error-tip"></div>
                             </div>

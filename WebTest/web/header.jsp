@@ -46,12 +46,30 @@
             </ul>
         </div>
 
-        <div class="fr h-right">
-            <div class="fl sig-box">
-                <div><a class="link" href="account/login.do">注册</a><span
-                        class="sep">|</span><a class="link" href="account/login.do">登录</a></div>
-            </div>
-        </div>
+        <c:choose>
+            <c:when test="${empty sessionScope.user}">
+                <div class="fr h-right">
+                    <div class="fl sig-box">
+                        <div>
+                            <a class="link" href="<%=baseUrl%>login.jsp">注册</a>
+                            <span class="sep">|</span>
+                            <a class="link" href="<%=baseUrl%>login.jsp">登录</a>
+                        </div>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="fr h-right">
+                    <div class="fl sig-box">
+                        <div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;欢迎<c:if test="${sessionScope.vip==1}">VIP</c:if>
+                            <a class="link" href="shop/shopcar.do?uid=${sessionScope.uid}">${sessionScope.user} </a>
+                        </div>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
+
 
         <div class="fr searchbox">
             <form action="courseList/search.do" target="_self">
