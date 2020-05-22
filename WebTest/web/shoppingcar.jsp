@@ -23,28 +23,43 @@
 
 
     <div class="cartBox">
-        <div class="shop_info">
-            <div class="all_check">
-                <!--店铺全选-->
-                <input type="checkbox" id="shop_a" class="shopChoice">
-                <label for="shop_a" class="shop"></label>
-            </div>
-            <div class="shop_name">
-                店铺：<a href="javascript:;">搜猎人艺术生活</a>
-            </div>
-        </div>
-        <div class="order_content">
+        <% int i = 0; %>
+        <c:forEach items="${course}" var="cou">
+            <%i++;%>
             <ul class="order_lists">
                 <li class="list_chk">
-                    <input type="checkbox" id="checkbox_2" class="son_check">
-                    <label for="checkbox_2"></label>
+                    <input type="checkbox" id="checkbox_<%=i%>" class="son_check">
+                    <label for="checkbox_<%=i%>"></label>
                 </li>
                 <li class="list_con">
-                    <div class="list_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-                    <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
+                    <div class="list_img"><a
+                            href="${pageContext.request.contextPath}/detail/course.do?courseId=${cou.cid}"><img
+                            src="${cou.cimgaddress}" alt=""></a></div>
+                    <div class="list_text"><a
+                            href="${pageContext.request.contextPath}/detail/course.do?courseId=${cou.cid}">${cou.cname}</a>
+                    </div>
                 </li>
                 <li class="list_price">
-                    <p class="price">￥980</p>
+                    <c:choose>
+                        <c:when test="${sessionScope.vip==1 && cou.ccondition==403}">
+                            <p class="price">¥<fmt:formatNumber type="number"
+                                                                value="${cou.cprice*cou.crebate*0.8}"
+                                                                pattern="0.00"
+                                                                maxFractionDigits="2"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <del class="pre-price">¥<fmt:formatNumber type="number"
+                                                                      value="${cou.cprice*cou.crebate}"
+                                                                      pattern="0.00"
+                                                                      maxFractionDigits="2"/></del>
+                        </c:when>
+                        <c:when test="${sessionScope.vip==1 && cou.ccondition==402}">
+                            <p class="price"> ¥0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <del class="pre-price">¥${cou.cprice}</del>
+                        </c:when>
+                        <c:otherwise>
+                            <p class="price">¥${cou.cprice}</p>
+                        </c:otherwise>
+                    </c:choose>
+
                 </li>
                 <li class="list_amount">
                     <div class="amount_box">
@@ -54,13 +69,27 @@
                     </div>
                 </li>
                 <li class="list_sum">
-                    <p class="sum_price">￥980</p>
+                    <c:choose>
+                        <c:when test="${sessionScope.vip==1 && cou.ccondition==403}">
+                            <p class="sum_price">¥<fmt:formatNumber type="number"
+                                                                    value="${cou.cprice*cou.crebate*0.8}"
+                                                                    pattern="0.00"
+                                                                    maxFractionDigits="2"/></p>
+                        </c:when>
+                        <c:when test="${sessionScope.vip==1 && cou.ccondition==402}">
+                            <p class="sum_price">¥0</p>
+                        </c:when>
+                        <c:otherwise>
+                            <p class="sum_price">¥${cou.cprice}</p>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
                 <li class="list_op">
-                    <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    <p class="del"><a href="${pageContext.request.contextPath}/shop/delete.do?courseId=${cou.cid}"
+                                      class="delBtn">移除商品</a></p>
                 </li>
             </ul>
-        </div>
+        </c:forEach>
     </div>
 
 
@@ -69,7 +98,9 @@
         <div class="bar-right">
             <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
             <div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
-            <div class="calBtn"><a href="javascript:;">结算</a></div>
+            <div class="calBtn"><a
+                    href="${pageContext.request.contextPath}/order/addorder.do?userId=${sessionScope.userid}">结算</a>
+            </div>
         </div>
     </div>
 </section>
@@ -77,13 +108,15 @@
 <section class="my_model">
     <p class="title">删除宝贝<span class="closeModel">X</span></p>
     <p>您确认要删除该宝贝吗？</p>
-    <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;"
-                                                                           class="dialog-close">关闭</a></div>
+    <div class="opBtn">
+        <a href="javascript:;" class="dialog-sure">确定</a>
+        <a href="javascript:;" class="dialog-close">关闭</a>
+    </div>
 </section>
 
 
 <jsp:include page="footer.jsp"/>
-<script src="staticfront/js/carts.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="staticfront/js/carts.js"></script>
 </body>
 </html>

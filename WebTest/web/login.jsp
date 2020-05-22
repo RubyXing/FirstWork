@@ -112,7 +112,8 @@
             <div class="lm-tabs-content">
                 <!--登录-->
                 <div id="logindiv" class="lm-tabpanel lm-tabpanel-login">
-                    <form class="lm-form login-form" method="post" action="<%=baseUrl%>account/login.do">
+                    <form class="lm-form login-form" method="post"
+                          action="<%=baseUrl%>account/login.do?courseId=${param.courseId}">
                         <div class="lm-form-item">
                             <div class="lm-input-wrapper">
                                 <input type="text" placeholder="学号/手机号/邮箱"

@@ -1,4 +1,4 @@
-package com.xing;
+package com.xing.pojo;
 
 
 public class Shopcar {
@@ -7,7 +7,6 @@ public class Shopcar {
     private int uid;
     private int cid;
     private int snum;
-    private java.util.Date sdate;
 
 
     public int getSid() {
@@ -46,12 +45,5 @@ public class Shopcar {
     }
 
 
-    public java.util.Date getSdate() {
-        return sdate;
-    }
-
-    public void setSdate(java.util.Date sdate) {
-        this.sdate = sdate;
-    }
 
 }

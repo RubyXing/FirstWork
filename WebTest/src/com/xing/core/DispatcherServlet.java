@@ -1,7 +1,6 @@
 package com.xing.core;
 
 import com.alibaba.fastjson.JSON;
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -54,7 +52,7 @@ public class DispatcherServlet extends HttpServlet {
             String resultViewUrl = resultView.getUrl();
             if (resultViewUrl.startsWith("response:")) {
                 //重定向
-                resp.sendRedirect(req.getContextPath() + resultViewUrl.replace("request:", ""));
+                resp.sendRedirect(req.getContextPath() + resultViewUrl.replace("response:", ""));
             } else {
                 //请求转发
                 resultView.getHashMap().forEach(req::setAttribute);

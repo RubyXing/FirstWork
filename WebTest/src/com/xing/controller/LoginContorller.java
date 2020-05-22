@@ -20,6 +20,11 @@ public class LoginContorller {
         String userpwd = req.getParameter("userpwd");
         System.out.println("mes:" + usermes + ",usepwd:" + userpwd);
         Users users = userDao.userLogin(usermes);
+        //判断不够细致
+        if (!"null".equals(req.getParameter("courseId")) && !req.getParameter("courseId").equals("")) {
+            int courseId = Integer.parseInt(req.getParameter("courseId"));
+            viewer.setUrl("response:/detail/course.do?courseId=" + courseId);
+        }
         if (users != null) {
             if (userpwd.equals(users.getUpwd())) {
                 req.getSession().setAttribute("user", users.getUname());

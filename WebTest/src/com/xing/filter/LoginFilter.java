@@ -21,7 +21,7 @@ public class LoginFilter implements Filter {
 
 
         if (req.getSession().getAttribute("user") == null || req.getSession().getAttribute("user") == "") {
-            res.sendRedirect(req.getContextPath() + "/login.jsp");
+            res.sendRedirect(req.getContextPath() + "/login.jsp?courseId=" + req.getParameter("courseId"));
         } else {
             // session中的内容等于登录页面, 则可以继续访问其他区资源.
             filterChain.doFilter(req, res);

@@ -90,7 +90,8 @@
 
                     <div class="courselist-banner-footer">
                         <a href="<%=baseUrl%>login.jsp" class="go-btn login-btn tologin">登录学习</a>
-                        <a href="my/shopping.do" class="go-btn try-btn">加入购物车</a>
+                        <a href="shop/addCourse.do?courseId=${course.cid}&userid=${sessionScope.userid}"
+                           class="go-btn try-btn">加入购物车</a>
                     </div>
                 </div>
             </div>

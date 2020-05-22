@@ -1,4 +1,4 @@
-package com.xing;
+package com.xing.pojo;
 
 
 public class Orderlist {
@@ -6,6 +6,7 @@ public class Orderlist {
     private int lid;
     private int uid;
     private java.util.Date ldate;
+    private double omoney;
     private int lstate;
 
 
@@ -33,6 +34,15 @@ public class Orderlist {
 
     public void setLdate(java.util.Date ldate) {
         this.ldate = ldate;
+    }
+
+
+    public double getOmoney() {
+        return omoney;
+    }
+
+    public void setOmoney(double omoney) {
+        this.omoney = omoney;
     }
 
 

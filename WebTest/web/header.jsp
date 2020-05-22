@@ -63,7 +63,8 @@
                     <div class="fl sig-box">
                         <div>
                             &nbsp;&nbsp;&nbsp;&nbsp;欢迎<c:if test="${sessionScope.vip==1}">VIP</c:if>
-                            <a class="link" href="shop/shopcar.do?uid=${sessionScope.uid}">${sessionScope.user} </a>
+                            <a class="link" href="order/list.do?userId=${sessionScope.userid}">${sessionScope.user} </a>
+                            <a class="link" href="shop/carlist.do">购物车</a>
                         </div>
                     </div>
                 </div>

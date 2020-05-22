@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 2017/5/24.
- */
 
 $(function () {
 
@@ -134,9 +131,12 @@ $(function () {
             $obj = $(this).parents('.amount_box').find('.reduce'),
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
-            $priceTotal = $count * parseInt($price.substring(1));
+            $priceTotal = $count * parseFloat($price.substring(1));
         $inputVal.val($count);
         $priceTotalObj.html('￥' + $priceTotal);
+        if (isNaN($priceTotal)) {
+            $priceTotalObj.html('￥0');
+        }
         if ($inputVal.val() > 1 && $obj.hasClass('reSty')) {
             $obj.removeClass('reSty');
         }
@@ -148,10 +148,13 @@ $(function () {
             $count = parseInt($inputVal.val()) - 1,
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
-            $priceTotal = $count * parseInt($price.substring(1));
+            $priceTotal = $count * parseFloat($price.substring(1));
         if ($inputVal.val() > 1) {
             $inputVal.val($count);
             $priceTotalObj.html('￥' + $priceTotal);
+            if (isNaN($priceTotalObj)) {
+                $priceTotalObj.html('￥0');
+            }
         }
         if ($inputVal.val() == 1 && !$(this).hasClass('reSty')) {
             $(this).addClass('reSty');
@@ -169,9 +172,12 @@ $(function () {
         }
         $(this).val($(this).val().replace(/\D|^0/g, ''));
         $count = $(this).val();
-        $priceTotal = $count * parseInt($price.substring(1));
+        $priceTotal = $count * parseFloat($price.substring(1));
         $(this).attr('value', $count);
         $priceTotalObj.html('￥' + $priceTotal);
+        if (isNaN($priceTotal)) {
+            $priceTotalObj.html('￥0');
+        }
         totalMoney();
     })
 
@@ -193,18 +199,14 @@ $(function () {
     $('.dialog-close').click(function () {
         closeM();
     });
-
     function closeM() {
         $('.model_bg').fadeOut(300);
         $('.my_model').fadeOut(300);
     }
-
     //确定按钮，移除商品
     $('.dialog-sure').click(function () {
         $order_lists.remove();
-        if ($order_content.html().trim() == null || $order_content.html().trim().length == 0) {
-            $order_content.parents('.cartBox').remove();
-        }
+        $order_content.parents('.cartBox').remove();
         closeM();
         $sonCheckBox = $('.son_check');
         totalMoney();
@@ -218,7 +220,7 @@ $(function () {
         var calBtn = $('.calBtn a');
         $sonCheckBox.each(function () {
             if ($(this).is(':checked')) {
-                var goods = parseInt($(this).parents('.order_lists').find('.sum_price').html().substring(1));
+                var goods = parseFloat($(this).parents('.order_lists').find('.sum_price').html().substring(1));
                 var num = parseInt($(this).parents('.order_lists').find('.sum').val());
                 total_money += goods;
                 total_count += num;
@@ -229,7 +231,7 @@ $(function () {
 
         // console.log(total_money,total_count);
 
-        if (total_money != 0 && total_count != 0) {
+        if (total_count != 0) {
             if (!calBtn.hasClass('btn_sty')) {
                 calBtn.addClass('btn_sty');
             }
